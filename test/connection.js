@@ -15,6 +15,11 @@ before(function(done) {
         console.log('Connection error: ', error);
     });
 });
-/*
-"C:\Program Files\MongoDB\Server\4.0\bin\mongod.exe" --dbpath="c:\data\db" 
-*/
+
+//drop the driver collection before every test
+beforeEach(function(done) {
+    //drop the collection
+    mongoose.connection.collections.drivers.drop(function() {
+        done();
+    });
+});
